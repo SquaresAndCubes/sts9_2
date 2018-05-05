@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+Venues: {{ venue_cnt }}
+{% for item in venue_list %}
+<ul>
+    <li>{{ item }}</li>
+</ul>
+{% endfor %}
+
+Shows: {{ show_cnt }}
+{% for item in show_list %}
+    <ul>
+    <li>{{ item }}</li>
+    </ul>
+
+{% endfor %}
+
+</body>
+</html>

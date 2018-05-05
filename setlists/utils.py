@@ -1,0 +1,61 @@
+import csv
+import os
+import datetime
+from django.conf import settings
+from setlists import models
+
+
+
+def import_venues():
+    data_filepath = "shows.csv"
+    results = {"created": 0, "skipped": 0}
+    with open(data_filepath, "r") as f:
+        reader = csv.reader(f)
+        # skip header
+        next(reader, None)
+        for row in reader:
+
+            # get_or_create returns 2 things, the first thing is the object we wanted, and the second thing
+            # is a true / false value that lets us know if the object was newly created or if was already there
+            new_obj, created = models.Venue.objects.get_or_create(name=row[2], city=row[3], state=row[4],
+                                                                  country=row[5])
+
+            # this is just being done for our print statement at the end, to let us know how many things were imported
+            if created:
+                results["created"] += 1
+            else:
+                results["skipped"] += 1
+
+    print("Finished - Created {} Venues, Duplicates: {}".format(results["created"], results["skipped"]))
+
+
+
+
+def import_shows():
+    # path to our csv file
+    data_filepath = "shows.csv"
+    results = {"created": 0, "skipped": 0}
+    with open(data_filepath, "r") as f:
+        reader = csv.reader(f)
+        # skip header
+        next(reader, None)
+        for row in reader:
+            # by asking for a venue by the name, city, state and country, we ensure that we are getting the correct venue
+            venue = models.Venue.objects.get(name=row[2], city=row[3], state=row[4], country=row[5])
+
+            show_date = datetime.datetime.strptime(row[1], '%Y-%m-%d')
+
+            # the new show needs to be saved after we create it
+            new_show = models.Show(show_key=row[0], date=show_date, venue=venue)
+
+            # thats done here
+            new_show.save()
+
+            # done for our print statement at the end
+            results["created"] += 1
+    print("Finished - Created {} Shows".format(results["created"]))
+
+
+def import_songs():
+    pass
+
