@@ -1840,7 +1840,7 @@ song_key,show_key,song_name,song_set,song_track,song_segue,song_notes,song_cover
 3rgz0if6,71a022i,"Ramone & Emiglio","Set 1",6,NULL,NULL,NULL,NULL
 3rhpuh1b,k9so6p6,Instantly,"Set 2",15,NULL,NULL,NULL,NULL
 3riy4p91,911kh08,"One, Two, Three",Encore,11,NULL,NULL,NULL,NULL
-3rubn9qt,btf1uq2,Eclipse,"Set 1",1,>,NULL,NULL,NULL
+3rubn9qt,btf1uq2,Eclipse,"Set 1",1,>,NULL,Pink Floyd,NULL
 3rvbe76a,ypufdry,Drums,"Set 1",4,NULL,NULL,NULL,NULL
 3rzyw6zp,k7crtgp,"Forest Hu","Set 2",13,>,NULL,NULL,NULL
 3s2k72v6,pldf6z6,"This, Us","Set 1",6,NULL,NULL,NULL,NULL
@@ -4629,7 +4629,7 @@ song_key,show_key,song_name,song_set,song_track,song_segue,song_notes,song_cover
 9ajkfj9z,ouyv6k3,"Tap In","Set 1",7,NULL,NULL,NULL,NULL
 9am6xyzs,svkpmbp,"Music, Us","Set 2",10,NULL,NULL,NULL,NULL
 9apye870,kr37c6k,"Looking Back On Earth","Set 1",7,NULL,NULL,NULL,NULL
-9ar0qsr8,4u1sc63,"Looking Back on Earth","Set 1",4,>,NULL,NULL,NULL
+9ar0qsr8,4u1sc63,"Looking Back On Earth","Set 1",4,>,NULL,NULL,NULL
 9asf7z7m,nz4hzmg,"Inspire Strikes Back","Set 2",13,NULL,NULL,NULL,NULL
 9auxpd42,4pf5joc,"Click Lang Echo","Set 1",3,>,NULL,NULL,NULL
 9awxb7w7,nz4hzmg,Shine,"Set 2",9,NULL,NULL,NULL,NULL
@@ -5430,7 +5430,7 @@ ataeyz8c,3guh1jf,"Hidden Hand, Hidden Fist","Set 2",8,NULL,NULL,NULL,NULL
 athotktb,wld88nx,STS9,"Set 1",1,NULL,NULL,NULL,NULL
 atju7yea,vh01yje,"... And Some Are Angels","Set 1",5,NULL,NULL,NULL,NULL
 atngohsf,mq7f72e,Aimlessly,"Set 1",6,NULL,NULL,NULL,NULL
-atskwu78,liw0zvx,"Looking Back on Earth","Set 2",14,NULL,NULL,NULL,NULL
+atskwu78,liw0zvx,"Looking Back On Earth","Set 2",14,NULL,NULL,NULL,NULL
 atu8g3r1,hm14h4o,"Open E","Set 1",5,NULL,NULL,NULL,NULL
 atv6lf91,giy7h82,Instantly,"Set 1",1,NULL,NULL,NULL,NULL
 atvxtgxt,z78030j,"Peaceblaster '68","Set 1",10,>,NULL,NULL,NULL
@@ -5512,7 +5512,7 @@ b087lkgh,lzhnabk,Baraka,"Set 1",2,NULL,NULL,NULL,NULL
 b0e5hmxw,maxie34,GLOgli,"Set 2",14,NULL,NULL,NULL,NULL
 b0eozxnz,pow71hm,"When the Dust Settles",Encore,22,NULL,NULL,NULL,NULL
 b0ev3duv,scsbdz2,Circus,"Set 1",3,NULL,NULL,NULL,NULL
-b0j3d85l,bn8cpy6,"Looking Back on Earth","Set 1",7,NULL,NULL,NULL,NULL
+b0j3d85l,bn8cpy6,"Looking Back On Earth","Set 1",7,NULL,NULL,NULL,NULL
 b0j64yuw,z9uk4ft,Rent,"Set 1",2,NULL,NULL,NULL,NULL
 b0qia9z4,cvyjrx9,"Tap In","Set 2",13,NULL,NULL,NULL,NULL
 b0saw0v3,wdl87no,ABCees,"Set 1",4,NULL,NULL,NULL,NULL
@@ -5644,7 +5644,7 @@ b8ccrb9f,p368akl,"Breathe In","Set 1",6,>,NULL,NULL,NULL
 b8cy5v9v,iytg935,"Ramone & Emiglio","Set 1",3,NULL,NULL,NULL,NULL
 b8d34jnb,h4parin,"Frequencies Peace 2","Set 1",3,>,NULL,NULL,NULL
 b8elw8up,i2v92jc,"Mischief of a Sleepwalker","Set 1",3,NULL,NULL,NULL,NULL
-b8ez2kh7,0fanogl,Rabble,"Set 2",9,NULL,NULL,NULL,NULL
+b8ez2kh7,0fanogl,"The Rabble","Set 2",9,NULL,NULL,NULL,NULL
 b8mo9a0q,avbacg8,"We'll Meet in Our Dreams","Set 1",5,NULL,NULL,NULL,NULL
 b8p89rv2,t63emjj,Grizzly,Encore,17,NULL,NULL,NULL,NULL
 b8sdmoxv,knxhe0f,Today,"Set 1",7,NULL,NULL,NULL,NULL
@@ -8232,7 +8232,7 @@ gb9ld20e,cjfi825,"Crystal Instrument","Set 1",2,NULL,NULL,NULL,NULL
 gba60j3b,om8xlgy,Kaya,"Set 1",4,NULL,NULL,NULL,NULL
 gbatoq52,3i4mav4,"Move My Peeps","Set 1",7,NULL,NULL,NULL,NULL
 gbbpr6rh,tqrptbd,STS9,"Set 1",4,NULL,NULL,NULL,NULL
-gbci4qh7,hw7t5k1,"NIN intro","Set 1",1,NULL,NULL,NULL,NULL
+gbci4qh7,hw7t5k1,"NIN Intro","Set 1",1,NULL,NULL,NULL,NULL
 gbdgrqrv,h4foph5,"The Unquestionable Supremacy of Nature","Set 2",9,NULL,NULL,NULL,NULL
 gbe0janx,wi3wl6e,Orbital,"Set 1",4,NULL,NULL,NULL,NULL
 gbepysgn,z0l17j1,Pianoir,"Set 2",9,NULL,NULL,NULL,NULL
@@ -9499,7 +9499,7 @@ irqkwbhl,5uzbw8s,"From Now On","Set 2",12,NULL,NULL,NULL,NULL
 irr5bk5t,jsb9f8s,"Water Song","Set 1",8,>,NULL,NULL,NULL
 irtnedxg,r199p0t,"Move My Peeps","Set 1",1,NULL,NULL,NULL,NULL
 irxagotc,7t1hrlp,20-12,"Set 1",2,NULL,NULL,NULL,NULL
-is0l0gj1,y44njt5,Eclipse,"Set 1",9,NULL,NULL,NULL,NULL
+is0l0gj1,y44njt5,Eclipse,"Set 1",9,NULL,NULL,Pink Floyd,NULL
 is0q5e7t,v9a9xqp,T.W.E.L.V.E.,"Set 2",7,NULL,NULL,NULL,NULL
 is6ksdh2,jots3f9,Nautilus,"Set 2",13,NULL,NULL,NULL,NULL
 is768ox0,jifa52x,Aimlessly,"Set 2",16,NULL,NULL,NULL,NULL
@@ -11398,7 +11398,7 @@ mi9uoum3,87mwhbj,Kamuy,"Set 1",2,>,NULL,NULL,NULL
 miaevasr,vov8ohf,Dance,"Set 2",14,NULL,NULL,NULL,NULL
 mib9obiw,21pz639,"Golden Gate","Set 1",1,NULL,NULL,NULL,NULL
 mihk8d8f,f7ki44q,"Four Year Puma",Encore,11,NULL,NULL,NULL,NULL
-mijcdcd4,n6e8b59,Rabble,"Set 1",2,NULL,NULL,NULL,NULL
+mijcdcd4,n6e8b59,"The Rabble","Set 1",2,NULL,NULL,NULL,NULL
 mikw9q8v,wcdfvei,"When the Dust Settles","Set 1",9,NULL,NULL,NULL,NULL
 miszvlbi,6cu0tq5,"Common Objects Strangely Placed","Set 1",12,NULL,NULL,NULL,NULL
 mitihtdb,tp0mybc,"H.B. Walks to School","Set 1",8,NULL,NULL,NULL,NULL
@@ -11872,7 +11872,7 @@ nh1ljjhv,hty2ddf,Dance,"Set 1",7,NULL,NULL,NULL,NULL
 nh1sd62t,pfevyjd,"Forest Hu","Set 2",9,>,NULL,NULL,NULL
 nh3aw4gy,l2334uz,Aimlessly,"Set 2",8,NULL,NULL,NULL,NULL
 nh4brbes,86atnyu,Kamuy,"Set 1",6,NULL,NULL,NULL,NULL
-nh9m0n7g,lceeawd,"Looking Back on Earth",Encore,20,>,NULL,NULL,NULL
+nh9m0n7g,lceeawd,"Looking Back On Earth",Encore,20,>,NULL,NULL,NULL
 nhezvme4,kte2y2r,"Peaceblaster '08","Set 2",17,NULL,NULL,NULL,NULL
 nhgmfhcp,xvygydw,"... And Some Are Angels","Set 2",13,NULL,NULL,NULL,NULL
 nhhy8lzy,bxcyc38,1103,"Set 1",7,NULL,NULL,NULL,NULL
@@ -13585,7 +13585,7 @@ qwi0rp7l,mhtz753,"Scheme Reprise","Set 1",10,NULL,NULL,NULL,NULL
 qwlnsixk,1rkfeje,Instantly,"Set 2",24,NULL,NULL,NULL,NULL
 qwvb9vfn,prfg9r3,Dance,Encore,19,NULL,NULL,NULL,NULL
 qww6a4fb,8weiirc,"F. Word","Set 1",5,NULL,NULL,NULL,NULL
-qwwp7gfc,tq0km7t,"Looking Back on Earth","Set 2",16,NULL,NULL,NULL,NULL
+qwwp7gfc,tq0km7t,"Looking Back On Earth","Set 2",16,NULL,NULL,NULL,NULL
 qx8gq93x,yqd7o0p,"Havona Ascent","Set 1",5,>,NULL,NULL,NULL
 qxcvkitl,q7t5hng,"Blu Mood","Set 1",2,NULL,NULL,NULL,NULL
 qxhd5gp7,50vxvsp,Equinox,"Set 1",13,NULL,NULL,NULL,NULL
@@ -14387,7 +14387,7 @@ sh42afuh,kzbvd8n,T.W.E.L.V.E.,"Set 1",9,NULL,NULL,NULL,NULL
 sh6spsr2,y6v05ne,EB,Encore,19,NULL,NULL,NULL,NULL
 sh9gvouw,82r9d63,"New Dawn, New Day","Set 1",1,NULL,NULL,NULL,NULL
 shhc8x2l,wki9ezz,"Four Year Puma","Set 1",14,NULL,NULL,NULL,NULL
-shhv0dj1,l9qfn4c,Rabble,"Set 1",6,NULL,NULL,NULL,NULL
+shhv0dj1,l9qfn4c,"The Rabble","Set 1",6,NULL,NULL,NULL,NULL
 shrgt67i,28a8xu1,"Move My Peeps","Set 1",4,NULL,NULL,NULL,NULL
 sht3180y,c2nc482,Simulator,"Set 2",15,NULL,NULL,NULL,NULL
 si5xawrv,0592wde,"Mischief of a Sleepwalker","Set 1",7,NULL,NULL,NULL,NULL

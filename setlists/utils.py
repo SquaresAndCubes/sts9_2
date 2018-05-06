@@ -56,6 +56,60 @@ def import_shows():
     print("Finished - Created {} Shows".format(results["created"]))
 
 
+def import_sets():
+    data_filepath = 'songs.csv'
+    results = {"created": 0, "skipped": 0}
+    with open(data_filepath, "r") as f:
+        reader = csv.reader(f)
+        # skip header
+        next(reader, None)
+        for row in reader:
+
+            show = models.Show.objects.get(show_key=row[1])
+
+            new_set, created = models.Set.objects.get_or_create(name=row[3], show=show)
+
+            if created:
+                results["created"] += 1
+            else:
+                results["skipped"] += 1
+
+        print("Finished - Created {} Sets, Duplicates: {}".format(results["created"], results["skipped"]))
+
 def import_songs():
-    pass
+    data_filepath = 'songs.csv'
+    results = {"created": 0, "skipped": 0}
+    with open(data_filepath, "r") as f:
+        reader = csv.reader(f)
+        # skip header
+        next(reader, None)
+        for row in reader:
+
+            new_song, created = models.Song.objects.get_or_create(name=row[2], cover=row[7])
+
+            if created:
+                results['created'] += 1
+            else:
+                results['skipped'] += 1
+
+        print("Finished - Created {} Songs, Duplicates: {}".format(results["created"], results["skipped"]))
+
+def import_performances():
+    data_filepath = 'songs.csv'
+    results = {"created": 0, "skipped": 0}
+    with open(data_filepath, "r") as f:
+        reader = csv.reader(f)
+        # skip header
+        next(reader, None)
+        for row in reader:
+
+            song = models.Song.objects.get(name=row[2])
+            set = models.Set.objects.get(show__show_key=row[1], name=row[3])
+
+            new_perf = models.Performance(song=song, set=set, track=row[4], segue=row[5], notes=row[6], guest=row[8])
+
+            new_perf.save()
+
+            results["created"] += 1
+    print("Finished - Created {} Performances".format(results["created"]))
 

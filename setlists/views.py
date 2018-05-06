@@ -7,16 +7,10 @@ from .models import Venue, Show
 
 def test(request):
 
-    venue_list = Venue.objects.all()
-    show_list = Show.objects.all()
-    venue_cnt = Venue.objects.all().count()
-    show_cnt = Show.objects.all().count()
+    setlists = Show.objects.all()
 
     template = loader.get_template('setlists/test.html')
     context = {
-        'venue_list': venue_list,
-        'show_cnt': show_cnt,
-        'venue_cnt': venue_cnt,
-        'show_list': show_list,
+        'setlists': setlists,
     }
     return HttpResponse(template.render(context, request))

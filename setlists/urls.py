@@ -5,6 +5,4 @@ urlpatterns = [
     #About section
     path('test/', views.test, name='test'),
 
-
-
 ]

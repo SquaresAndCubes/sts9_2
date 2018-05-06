@@ -7,19 +7,13 @@
 <body>
 
 
-Venues: {{ venue_cnt }}
-{% for item in venue_list %}
-<ul>
-    <li>{{ item }}</li>
-</ul>
-{% endfor %}
-
-Shows: {{ show_cnt }}
-{% for item in show_list %}
+{% for item in setlists %}
     <ul>
-    <li>{{ item }}</li>
+    {{ item }}
     </ul>
-
+    {% for set in item_set.all %}
+        {{ set }}
+    {% endfor %}
 {% endfor %}
 
 </body>
