@@ -7,12 +7,13 @@
 <body>
 
 
-{% for item in setlists %}
-    <ul>
-    {{ item }}
-    </ul>
-    {% for set in item_set.all %}
-        {{ set }}
+{% for show in setlists %}
+    {{ show }}
+    {% for thing in show.set_set.all() %}
+        {{ thing }}
+        {% for item in thing.performance_set.all() %}
+            {{ item.song.name }}
+        {% endfor %}
     {% endfor %}
 {% endfor %}
 
