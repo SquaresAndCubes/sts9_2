@@ -28,7 +28,7 @@ def year(request, year=None):
 
     setlists = Show.filter.by_year(year)
 
-    show_count = len(setlists)
+    show_count = setlists.count()
 
     template = loader.get_template('setlists/index.html')
 
@@ -36,6 +36,7 @@ def year(request, year=None):
         'setlists': setlists,
         'year': year,
         'show_count': show_count,
+        'years_list': years_list,
     }
     return HttpResponse(template.render(context, request))
 

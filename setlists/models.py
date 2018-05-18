@@ -1,4 +1,7 @@
 from django.db import models
+from datetime import datetime
+from django.db.models.functions import ExtractYear
+
 
 
 class Venue(models.Model):
@@ -12,16 +15,19 @@ class Venue(models.Model):
     def __str__(self):
         return "{} - {} - {} - {}".format(self.name, self.city, self.state, self.country)
 
+
+#Show filters models manager for custom queries
+
 class ShowFilters(models.Manager):
 
+    #return all shows by specific year
     def by_year(self, year):
 
         return self.filter(date__year=year).all()
 
     def years_list(self):
         #build years list distinct
-        pass
-
+        return self.all().dates('date', 'year')
 
 
 class Show(models.Model):
