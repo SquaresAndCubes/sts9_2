@@ -1,8 +1,15 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import Venue, Show
+from .models import *
 
 # Create your views here.
+
+
+def home():
+    pass
+
+def stats():
+    pass
 
 
 def test(request):
@@ -15,14 +22,20 @@ def test(request):
     }
     return HttpResponse(template.render(context, request))
 
-def setlists(request):
+def year(request, year=None):
 
-    setlists = Show.objects.all()
+    years_list = Show.filter.years_list()
+
+    setlists = Show.filter.by_year(year)
+
+    show_count = len(setlists)
 
     template = loader.get_template('setlists/index.html')
 
     context = {
         'setlists': setlists,
+        'year': year,
+        'show_count': show_count,
     }
     return HttpResponse(template.render(context, request))
 

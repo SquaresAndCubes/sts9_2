@@ -12,6 +12,16 @@ class Venue(models.Model):
     def __str__(self):
         return "{} - {} - {} - {}".format(self.name, self.city, self.state, self.country)
 
+class ShowFilters(models.Manager):
+
+    def by_year(self, year):
+
+        return self.filter(date__year=year).all()
+
+    def years_list(self):
+        #build years list distinct
+        pass
+
 
 
 class Show(models.Model):
@@ -22,6 +32,8 @@ class Show(models.Model):
     #unique properties
     show_key = models.CharField(max_length=7)
     date = models.DateField()
+
+    filter = ShowFilters()
 
     def __str__(self):
         return '{} - {}'.format(self.date, self.venue)

@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}{{ year }} Shows{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="header">
+            <h2>{{ year }} Shows | {{ show_count }}</h2>
+        </div>
+        &nbsp;
+        <div class="btn-toolbar" role="toolbar" aria-label="...">
+            {% for yr in years_list %}
+                <div class="btn-group" role="group" aria-label="...">
+                <a href="/setlists/{{yr}}" class="btn btn-default" role="button"><b>{{ yr }}</b></a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <hr>
+
+                {% for show in setlists %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><b>{{ show.date }} - {{ show.venue }}
+                            </b></div>
+                    <div class="panel-body">
+
+
+
+
+                    </div>
+                    </div>
+                {% endfor %}
+
+    </div>
+
+{% endblock %}
