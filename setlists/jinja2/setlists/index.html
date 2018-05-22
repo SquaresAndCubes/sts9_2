@@ -13,36 +13,43 @@
         <div class="btn-toolbar" role="toolbar" aria-label="...">
             {% for yr in years_list %}
                 <div class="btn-group" role="group" aria-label="...">
-                <a href="/setlists/{{yr.year}}" class="btn btn-default" role="button"><b>{{ yr.year }}</b></a>
+                    <a href="/setlists/{{yr.year}}" class="btn btn-default" role="button"><b>{{ yr.year }}</b></a>
                 </div>
             {% endfor %}
         </div>
 
         <hr>
 
-                {% for show in setlists %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><b>{{ show.date.month }}/{{ show.date.day }}/{{ show.date.year }} | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}
-                            </b></div>
-                    <div class="panel-body">
-                    {% for set in show.set_set.all() %}
-                        <p>
-                            <b>{{ set.name }}: </b>
-                            
-                        {% for song in set.performance_set.all() %}
-                            <a href="/song/{{ song.song.name }}.html" title="{{ song.song.name }}">{{ song.song.name }}</a>
+        {% for show in setlists %}
+            <div class="panel panel-default">
+                <div class="panel-heading"><b>{{ show.date.month }}/{{ show.date.day }}/{{ show.date.year }} | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}
+                </b></div>
+                <div class="panel-body">
+
+
+                    {% for set in show.performance_set.all().order_by('track')|groupby('set.name') %}
+
+
+                        {{ set.grouper }}
+                        {% for song in set.list %}
+                            {{ song.song.name }}
                             {% if not loop.last %}
-                            {{ song.segue or '|' }}
+                                {{ song.segue or '|' }}
                             {% endif %}
                         {% endfor %}
-                        </p>
-                        {% endfor %}
 
 
 
-                    </div>
-                    </div>
-                {% endfor %}
+
+                    {% endfor %}
+
+
+
+
+
+                </div>
+            </div>
+        {% endfor %}
 
     </div>
 

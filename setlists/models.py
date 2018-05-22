@@ -6,7 +6,7 @@ class Venue(models.Model):
     #unique properties
     name = models.CharField(max_length=64)
     city = models.CharField(max_length=64)
-    state = models.CharField(max_length=2)
+    state = models.CharField(max_length=2, null=True)
     country = models.CharField(max_length=2)
 
     def __str__(self):
