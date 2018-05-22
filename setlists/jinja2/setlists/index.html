@@ -13,7 +13,7 @@
         <div class="btn-toolbar" role="toolbar" aria-label="...">
             {% for yr in years_list %}
                 <div class="btn-group" role="group" aria-label="...">
-                <a href="/setlists/{{yr}}" class="btn btn-default" role="button"><b>{{ yr }}</b></a>
+                <a href="/setlists/{{yr.year}}" class="btn btn-default" role="button"><b>{{ yr.year }}</b></a>
                 </div>
             {% endfor %}
         </div>
@@ -22,10 +22,21 @@
 
                 {% for show in setlists %}
                     <div class="panel panel-default">
-                        <div class="panel-heading"><b>{{ show.date }} - {{ show.venue }}
+                        <div class="panel-heading"><b>{{ show.date.month }}/{{ show.date.day }}/{{ show.date.year }} | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}
                             </b></div>
                     <div class="panel-body">
-
+                    {% for set in show.set_set.all() %}
+                        <p>
+                            <b>{{ set.name }}: </b>
+                            
+                        {% for song in set.performance_set.all() %}
+                            <a href="/song/{{ song.song.name }}.html" title="{{ song.song.name }}">{{ song.song.name }}</a>
+                            {% if not loop.last %}
+                            {{ song.segue or '|' }}
+                            {% endif %}
+                        {% endfor %}
+                        </p>
+                        {% endfor %}
 
 
 

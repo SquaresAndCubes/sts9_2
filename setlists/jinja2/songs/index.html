@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Songs{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="header">
+            <h1>Songs</h1>
+        </div>
+        <hr />
+
+        <table class="table table-hover">
+            <tr>
+                <th>Song</th>
+                <th>Times Played</th>
+            </tr>
+
+            {% for song in songs %}
+            <tr>
+                <td><a href="/song/{{ song.name }}" title="{{ song.name }}">{{ song.name }}</a></td>
+                <td>TBD</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -65,9 +65,9 @@ def import_sets():
         next(reader, None)
         for row in reader:
 
-            show = models.Show.objects.get(show_key=row[1])
 
-            new_set, created = models.Set.objects.get_or_create(name=row[3], show=show)
+
+            new_set, created = models.Set.objects.get_or_create(name=row[3])
 
             if created:
                 results["created"] += 1
@@ -104,9 +104,12 @@ def import_performances():
         for row in reader:
 
             song = models.Song.objects.get(name=row[2])
-            set = models.Set.objects.get(show__show_key=row[1], name=row[3])
 
-            new_perf = models.Performance(song=song, set=set, track=row[4], segue=row[5], notes=row[6], guest=row[8])
+            set = models.Set.objects.get(name=row[3])
+
+            show = models.Show.filters.get(show_key=row[1])
+
+            new_perf = models.Performance(song=song, set=set, show=show, track=row[4], segue=row[5], notes=row[6], guest=row[8])
 
             new_perf.save()
 

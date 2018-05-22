@@ -24,10 +24,18 @@ def test(request):
 
 def year(request, year=None):
 
-    years_list = Show.filter.years_list()
+    years_list = Show.filters.years_list()
 
-    setlists = Show.filter.by_year(year)
+    #grabs most recent year object and pulls year
+    latest_year = years_list[0].year
 
+    #if no year is given in url sets year to most recent
+    if year == None:
+        year = latest_year
+
+    setlists = Show.filters.by_year(year)
+
+    #counts num of shows in the year
     show_count = setlists.count()
 
     template = loader.get_template('setlists/index.html')
@@ -51,3 +59,7 @@ def songs(request):
         'songs': songs,
     }
     return HttpResponse(template.render(context, request))
+
+def song(request):
+
+    pass

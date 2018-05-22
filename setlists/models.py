@@ -1,7 +1,4 @@
 from django.db import models
-from datetime import datetime
-from django.db.models.functions import ExtractYear
-
 
 
 class Venue(models.Model):
@@ -23,11 +20,12 @@ class ShowFilters(models.Manager):
     #return all shows by specific year
     def by_year(self, year):
 
-        return self.filter(date__year=year).all()
+        return self.filter(date__year=year).all().order_by('date').reverse()
 
+    #returns unique years
     def years_list(self):
-        #build years list distinct
-        return self.all().dates('date', 'year')
+
+        return self.dates('date', 'year', order='DESC')
 
 
 class Show(models.Model):
@@ -39,7 +37,7 @@ class Show(models.Model):
     show_key = models.CharField(max_length=7)
     date = models.DateField()
 
-    filter = ShowFilters()
+    filters = ShowFilters()
 
     def __str__(self):
         return '{} - {}'.format(self.date, self.venue)
@@ -48,8 +46,6 @@ class Show(models.Model):
 
 class Set(models.Model):
 
-    #set took place @ show relationship
-    show = models.ForeignKey(Show, on_delete=models.DO_NOTHING)
 
     #songs played during this set
     songs = models.ManyToManyField('Song', through='Performance')
@@ -61,37 +57,39 @@ class Set(models.Model):
         return '{}'.format(self.name)
 
 
-
 class Song(models.Model):
-
 
     #unique properties
     name = models.CharField(max_length=128)
-    cover = models.CharField(max_length=64)
-
+    cover = models.CharField(max_length=64, null=True)
 
     def __str__(self):
-        return '{} - {}'.format(self.name, self.name)
+        return '{}'.format(self.name)
 
+class PerformanceStats(models.Manager):
 
+    #build function to get times played
+    def times_played(self):
+        pass
 
 class Performance(models.Model):
 
     #performance of a song relationship
     song = models.ForeignKey(Song, on_delete=models.DO_NOTHING)
 
-    #performance took place during a set
+    #performance took place at a show
     set = models.ForeignKey(Set, on_delete=models.DO_NOTHING)
 
+    show = models.ForeignKey(Show, on_delete=models.DO_NOTHING)
 
     #unique properties
     track = models.IntegerField()
-    segue = models.CharField(max_length=1)
-    notes = models.CharField(max_length=128)
-    guest = models.CharField(max_length=64)
+    segue = models.CharField(max_length=1, null=True)
+    notes = models.CharField(max_length=128, null=True)
+    guest = models.CharField(max_length=64, null=True)
 
     def __str__(self):
-        return '{} - {}'.format(self.set.show.date, self.song.name)
+        return '{} - {} - {}'.format(self.show.date, self.set.name, self.song.name)
 
 
 
