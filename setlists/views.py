@@ -24,7 +24,7 @@ def test(request):
 
 def year(request, year=None):
 
-    years_list = Show.filters.years_list()
+    years_list = Show.filter.years_list()
 
     #grabs most recent year object and pulls year
     latest_year = years_list[0].year
@@ -33,7 +33,7 @@ def year(request, year=None):
     if year == None:
         year = latest_year
 
-    setlists = Show.filters.by_year(year)
+    setlists = Show.filter.by_year(year)
 
     #counts num of shows in the year
     show_count = setlists.count()

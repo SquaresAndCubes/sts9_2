@@ -3,6 +3,7 @@ import os
 import datetime
 from django.conf import settings
 from setlists import models
+from setlists.models import Set
 
 
 
@@ -65,9 +66,29 @@ def import_sets():
         next(reader, None)
         for row in reader:
 
+            show = models.Show.filter.get(show_key=row[1])
+
+            in_name = row[3]
+
+            new_name = None
+
+            if in_name == 'Set 1':
+                new_name = Set.SET1
+            elif in_name == 'Set 2':
+                new_name = Set.SET2
+            elif in_name == 'Set 3':
+                new_name = Set.SET3
+            elif in_name == 'Encore':
+                new_name = Set.ENCORE
+            elif in_name == 'Encore 2':
+                new_name = Set.ENCORE2
+            elif in_name == 'Axe the Cables':
+                new_name = Set.AXE
+            elif in_name == 'PA Set':
+                new_name = Set.PA
 
 
-            new_set, created = models.Set.objects.get_or_create(name=row[3])
+            new_set, created = models.Set.objects.get_or_create(name=new_name, show=show)
 
             if created:
                 results["created"] += 1
@@ -85,7 +106,13 @@ def import_songs():
         next(reader, None)
         for row in reader:
 
-            new_song, created = models.Song.objects.get_or_create(name=row[2], cover=row[7])
+            in_artist = row[7]
+
+            if in_artist == 'NULL':
+                in_artist = 'STS9'
+
+
+            new_song, created = models.Song.objects.get_or_create(name=row[2], artist=in_artist)
 
             if created:
                 results['created'] += 1
@@ -105,11 +132,30 @@ def import_performances():
 
             song = models.Song.objects.get(name=row[2])
 
-            set = models.Set.objects.get(name=row[3])
 
-            show = models.Show.filters.get(show_key=row[1])
 
-            new_perf = models.Performance(song=song, set=set, show=show, track=row[4], segue=row[5], notes=row[6], guest=row[8])
+            in_name = row[3]
+
+            new_name = None
+
+            if in_name == 'Set 1':
+                new_name = Set.SET1
+            elif in_name == 'Set 2':
+                new_name = Set.SET2
+            elif in_name == 'Set 3':
+                new_name = Set.SET3
+            elif in_name == 'Encore':
+                new_name = Set.ENCORE
+            elif in_name == 'Encore 2':
+                new_name = Set.ENCORE2
+            elif in_name == 'Axe the Cables':
+                new_name = Set.AXE
+            elif in_name == 'PA Set':
+                new_name = Set.PA
+
+            set = models.Set.objects.get(show__show_key=row[1], name=new_name)
+
+            new_perf = models.Performance(song=song, set=set, track=row[4], segue=row[5], notes=row[6], guest=row[8])
 
             new_perf.save()
 

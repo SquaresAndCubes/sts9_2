@@ -27,24 +27,14 @@
                 <div class="panel-body">
 
 
-                    {% for set in show.performance_set.all().order_by('track')|groupby('set.name') %}
-
-
-                        {{ set.grouper }}
-                        {% for song in set.list %}
-                            {{ song.song.name }}
-                            {% if not loop.last %}
-                                {{ song.segue or '|' }}
-                            {% endif %}
+                    {% for set in show.get_sets() %}
+                    {% for song in set.get_songs() %}
+                        {{ song.song.name }}
+                        {% if not loop.last %}
+                        {{ song.segue or '|' }}
+                        {% endif %}
                         {% endfor %}
-
-
-
-
                     {% endfor %}
-
-
-
 
 
                 </div>
