@@ -28,13 +28,15 @@
 
 
                     {% for set in show.get_sets() %}
-                        {{ set.get_set_display }}
+                        <p>
+                            <b>{{ set.get_name_display() }}: </b>
                     {% for song in set.get_songs() %}
-                        {{ song.song.name }}
+                        <a href="/song/{{ song.song.name }}.html" title="{{ song.song.name }}">{{ song.song.name }}</a>
                         {% if not loop.last %}
                         {{ song.segue or '|' }}
                         {% endif %}
                         {% endfor %}
+                        </p>
                     {% endfor %}
 
 
