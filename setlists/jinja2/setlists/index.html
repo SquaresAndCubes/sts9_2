@@ -28,6 +28,7 @@
 
 
                     {% for set in show.get_sets() %}
+                        {{ set.get_set_display }}
                     {% for song in set.get_songs() %}
                         {{ song.song.name }}
                         {% if not loop.last %}

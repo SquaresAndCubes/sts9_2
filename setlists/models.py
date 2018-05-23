@@ -29,7 +29,7 @@ class ShowFilters(models.Manager):
 class Show(models.Model):
 
     #show was @ a venue relationship
-    venue = models.ForeignKey(Venue, on_delete=models.DO_NOTHING)
+    venue = models.ForeignKey(Venue, null=True, on_delete=models.SET_NULL)
 
     #unique properties
     show_key = models.CharField(max_length=7)
@@ -44,7 +44,7 @@ class Show(models.Model):
     #function for getting sets
     def get_sets(self):
 
-        return self.set_set.all()
+        return self.set_set.all().order_by('set_pos')
 
     def __str__(self):
         return '{} - {}'.format(self.date, self.venue)
@@ -80,10 +80,14 @@ class Set(models.Model):
     )
 
     #set took place @ show relationship
-    show = models.ForeignKey(Show, on_delete=models.DO_NOTHING)
+    show = models.ForeignKey(Show, on_delete=models.CASCADE)
 
     #songs played during this set
     songs = models.ManyToManyField('Song', through='Performance')
+
+    #set position in show
+
+    set_pos = models.IntegerField()
 
     #get performances
     def get_songs(self):
@@ -114,10 +118,10 @@ class PerformanceStats(models.Manager):
 class Performance(models.Model):
 
     #performance of a song relationship
-    song = models.ForeignKey(Song, on_delete=models.DO_NOTHING)
+    song = models.ForeignKey(Song, null=True, on_delete=models.SET_NULL)
 
     #performance took place during a set
-    set = models.ForeignKey(Set, on_delete=models.DO_NOTHING)
+    set = models.ForeignKey(Set, on_delete=models.CASCADE)
 
     #unique properties
     track = models.IntegerField()

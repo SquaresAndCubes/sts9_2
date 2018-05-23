@@ -10,7 +10,7 @@ from setlists.models import Set
 def import_venues():
     data_filepath = "shows.csv"
     results = {"created": 0, "skipped": 0}
-    with open(data_filepath, "r") as f:
+    with open(data_filepath, "r", encoding='utf8') as f:
         reader = csv.reader(f)
         # skip header
         next(reader, None)
@@ -36,7 +36,7 @@ def import_shows():
     # path to our csv file
     data_filepath = "shows.csv"
     results = {"created": 0, "skipped": 0}
-    with open(data_filepath, "r") as f:
+    with open(data_filepath, "r", encoding='utf8') as f:
         reader = csv.reader(f)
         # skip header
         next(reader, None)
@@ -60,7 +60,7 @@ def import_shows():
 def import_sets():
     data_filepath = 'songs.csv'
     results = {"created": 0, "skipped": 0}
-    with open(data_filepath, "r") as f:
+    with open(data_filepath, "r", encoding='utf8') as f:
         reader = csv.reader(f)
         # skip header
         next(reader, None)
@@ -71,25 +71,33 @@ def import_sets():
             in_name = row[3]
 
             new_name = None
+            set_pos = None
 
             if in_name == 'Set 1':
                 new_name = Set.SET1
+                set_pos = 1
             elif in_name == 'Set 2':
                 new_name = Set.SET2
+                set_pos = 2
             elif in_name == 'Set 3':
                 new_name = Set.SET3
+                set_pos = 3
             elif in_name == 'Encore':
                 new_name = Set.ENCORE
+                set_pos = 10
             elif in_name == 'Encore 2':
                 new_name = Set.ENCORE2
+                set_pos = 11
             elif in_name == 'Axe the Cables':
                 new_name = Set.AXE
+                set_pos = 0
             elif in_name == 'PA Set':
                 new_name = Set.PA
+                set_pos = 0
 
 
-            new_set, created = models.Set.objects.get_or_create(name=new_name, show=show)
-
+            new_set, created = models.Set.objects.get_or_create(name=new_name, show=show, set_pos=set_pos)
+            # print(new_name + '|' + show + '|' + set_pos)
             if created:
                 results["created"] += 1
             else:
@@ -100,7 +108,7 @@ def import_sets():
 def import_songs():
     data_filepath = 'songs.csv'
     results = {"created": 0, "skipped": 0}
-    with open(data_filepath, "r") as f:
+    with open(data_filepath, "r", encoding='utf8') as f:
         reader = csv.reader(f)
         # skip header
         next(reader, None)
@@ -124,15 +132,13 @@ def import_songs():
 def import_performances():
     data_filepath = 'songs.csv'
     results = {"created": 0, "skipped": 0}
-    with open(data_filepath, "r") as f:
+    with open(data_filepath, "r", encoding='utf8') as f:
         reader = csv.reader(f)
         # skip header
         next(reader, None)
         for row in reader:
 
             song = models.Song.objects.get(name=row[2])
-
-
 
             in_name = row[3]
 
