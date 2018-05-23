@@ -105,6 +105,10 @@ class Song(models.Model):
     name = models.CharField(max_length=128, null=False)
     artist = models.CharField(max_length=64, null=False)
 
+    def times_played(self):
+
+        return self.performance_set.all().count()
+
     def __str__(self):
         return '{} - {}'.format(self.name, self.artist)
 
