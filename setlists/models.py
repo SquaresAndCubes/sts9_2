@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Count
 
 
 class Venue(models.Model):
@@ -98,6 +99,11 @@ class Set(models.Model):
     def __str__(self):
         return '{} - {} \n{}'.format(self.show, self.get_name_display(), self.performance_set.all().values_list('song__name'))
 
+class SongsLists(models.Manager):
+
+    def all_songs(self):
+        #returns all songs ordered by play count
+        return self.annotate(play_count=Count('performance__set')).order_by('-play_count')
 
 class Song(models.Model):
 
@@ -108,6 +114,10 @@ class Song(models.Model):
     def times_played(self):
 
         return self.performance_set.all().count()
+
+    lists = SongsLists()
+
+    objects = models.Manager
 
     def __str__(self):
         return '{} - {}'.format(self.name, self.artist)

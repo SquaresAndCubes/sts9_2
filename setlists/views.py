@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
 from .models import *
-from django.db.models import Count
 
 # Create your views here.
 
@@ -52,7 +51,7 @@ def year(request, year=None):
 
 def songs(request):
 
-    songs = Song.objects.annotate(play_count=Count('performance__set')).order_by('-play_count')
+    songs = Song.lists.all_songs()
 
     template = loader.get_template('songs/index.html')
 
