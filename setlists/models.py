@@ -4,10 +4,10 @@ from django.db import models
 class Venue(models.Model):
 
     #unique properties
-    name = models.CharField(max_length=64)
-    city = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, null=False)
+    city = models.CharField(max_length=64, null=False)
     state = models.CharField(max_length=2, null=True)
-    country = models.CharField(max_length=2)
+    country = models.CharField(max_length=2, null=False)
 
     def __str__(self):
         return "{} - {} - {} - {}".format(self.name, self.city, self.state, self.country)
@@ -32,7 +32,7 @@ class Show(models.Model):
     venue = models.ForeignKey(Venue, null=True, on_delete=models.SET_NULL)
 
     #unique properties
-    show_key = models.CharField(max_length=7)
+
     date = models.DateField()
 
     #custom model manager sticky
@@ -41,7 +41,7 @@ class Show(models.Model):
     #default model manager
     objects = models.Manager()
 
-    #function for getting sets
+    #function for getting sets ordered by set position
     def get_sets(self):
 
         return self.set_set.all().order_by('set_pos')
@@ -77,6 +77,7 @@ class Set(models.Model):
         max_length=2,
         choices=SET_CHOICES,
         default=SET1,
+        null=False,
     )
 
     #set took place @ show relationship
@@ -95,17 +96,17 @@ class Set(models.Model):
         return self.performance_set.all().order_by('track')
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{} - {} \n{}'.format(self.show, self.get_name_display(), self.performance_set.all().values_list('song__name'))
 
 
 class Song(models.Model):
 
     #unique properties
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, null=False)
     artist = models.CharField(max_length=64, null=False)
 
     def __str__(self):
-        return '{} - {}'.format(self.name, self.name)
+        return '{} - {}'.format(self.name, self.artist)
 
 
 class PerformanceStats(models.Manager):
