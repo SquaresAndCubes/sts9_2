@@ -16,14 +16,12 @@ class Venue(models.Model):
 
 class ShowFilters(models.Manager):
 
-    #return only shows of the specified year
     def by_year(self, year):
-
+        # return only shows of the specified year
         return self.filter(date__year=year).all().order_by('date').reverse()
 
-    #get list of unique years
     def years_list(self):
-        #build years list distinct
+        # get list of unique years
         return self.dates('date', 'year', order='DESC')
 
 
@@ -88,7 +86,6 @@ class Set(models.Model):
     songs = models.ManyToManyField('Song', through='Performance')
 
     #set position in show
-
     set_pos = models.IntegerField()
 
     #get performances
@@ -105,6 +102,11 @@ class SongsLists(models.Manager):
         #returns all songs ordered by play count
         return self.annotate(play_count=Count('performance__set')).order_by('-play_count')
 
+    def one_song(self, song):
+        #returns one song object by name input
+        return self.get(name=song)
+
+
 class Song(models.Model):
 
     #unique properties
@@ -112,23 +114,25 @@ class Song(models.Model):
     artist = models.CharField(max_length=64, null=False)
 
     def times_played(self):
-
+        #total number times song was played
         return self.performance_set.all().count()
 
-    lists = SongsLists()
+    def all_occurrences(self):
+        #return all sows where song was played
+        return self.performance_set.all()
 
-    objects = models.Manager
+    #model manager sticky
+    filter = SongsLists()
+
+    #default models manager
+    objects = models.Manager()
 
     def __str__(self):
         return '{} - {}'.format(self.name, self.artist)
 
-
 class PerformanceStats(models.Manager):
 
-    #build function to get times played
-    def times_played(self):
-        pass
-
+    pass
 
 class Performance(models.Model):
 

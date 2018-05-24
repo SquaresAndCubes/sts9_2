@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ song }}{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="header">
+            <h1>{{ song }}</h1>
+        </div>
+        <hr />
+
+        <table class="table table-hover">
+            <tr>
+                <th>Date</th>
+                <th>Venue</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+            </tr>
+
+            {% for show in shows %}
+            <tr>
+                <td>{{ show.set.show.date }}</td>
+                <td>{{ show.set.show.venue.name }}</td>
+                <td>{{ show.set.show.venue.city }}</td>
+                <td>{{ show.set.show.venue.state }}</td>
+                <td>{{ show.set.show.venue.country }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -14,7 +14,7 @@ urlpatterns = [
     #Songs List Landing Page
     path('songs/', views.songs, name='songs'),
     #Specific Song Page
-    path('songs/<str:song>', views.songs, name='song'),
+    path('songs/<str:song>', views.song, name='song'),
     #Stats Landing Page
     path('stats/', views.stats, name='stats'),
 

@@ -51,7 +51,7 @@ def year(request, year=None):
 
 def songs(request):
 
-    songs = Song.lists.all_songs()
+    songs = Song.filter.all_songs()
 
     template = loader.get_template('songs/index.html')
 
@@ -60,6 +60,15 @@ def songs(request):
     }
     return HttpResponse(template.render(context, request))
 
-def song(request):
+def song(request, song):
 
-    pass
+    #gets song object and finds all shows it was played at
+    shows = Song.filter.one_song(song).all_occurrences().order_by('set__show__date').reverse()
+
+    template = loader.get_template('songs/song.html')
+
+    context = {
+        'song': song,
+        'shows': shows,
+    }
+    return HttpResponse(template.render(context, request))
