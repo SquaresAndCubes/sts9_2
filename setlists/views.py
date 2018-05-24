@@ -63,7 +63,7 @@ def songs(request):
 def song(request, song):
 
     #gets song object and finds all shows it was played at
-    shows = Song.filter.one_song(song).all_occurrences().order_by('set__show__date').reverse()
+    shows = Song.filter.one_song(song).all_shows_played().order_by('set__show__date').reverse()
 
     template = loader.get_template('songs/song.html')
 

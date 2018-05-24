@@ -19,8 +19,9 @@
 
             {% for song in songs %}
             <tr>
-                <td><a href="/songs/{{ song.name }}" title="{{ song.name }}">{{ song.name }}</a></td>
-                <td>{{ song.times_played() }}</td>
+            {% set song_name, play_count = song.times_played() %}
+                <td><a href="/songs/{{ song_name }}" title="{{ song_name }}">{{ song_name }}</a></td>
+                <td>{{ play_count }}</td>
             </tr>
             {% endfor %}
         </table>

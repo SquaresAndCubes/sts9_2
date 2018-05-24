@@ -100,7 +100,7 @@ class SongsLists(models.Manager):
 
     def all_songs(self):
         #returns all songs ordered by play count
-        return self.annotate(play_count=Count('performance__set')).order_by('-play_count')
+        return self.all()
 
     def one_song(self, song):
         #returns one song object by name input
@@ -115,11 +115,11 @@ class Song(models.Model):
 
     def times_played(self):
         #total number times song was played
-        return self.performance_set.all().count()
+        return self.name, self.performance_set.values_list('set__show_id').distinct().count()
 
-    def all_occurrences(self):
+    def all_shows_played(self):
         #return all sows where song was played
-        return self.performance_set.all()
+        pass
 
     #model manager sticky
     filter = SongsLists()
