@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ song }}{% endblock %}
+{% block title %}{{ song_name }}{% endblock %}
 
 
 {% block content %}
 
     <div class="container">
         <div class="header">
-            <h1>{{ song }}</h1>
+            <h1>{{ song_name }}</h1>
         </div>
         <hr />
 
@@ -22,11 +22,11 @@
 
             {% for show in shows %}
             <tr>
-                <td>{{ show.set.show.date }}</td>
-                <td>{{ show.set.show.venue.name }}</td>
-                <td>{{ show.set.show.venue.city }}</td>
-                <td>{{ show.set.show.venue.state }}</td>
-                <td>{{ show.set.show.venue.country }}</td>
+                <td>{{ show }}</td>
+                <td>{{ show }}</td>
+                <td>{{ show }}</td>
+                <td>{{ show }}</td>
+                <td>{{ show }}</td>
             </tr>
             {% endfor %}
         </table>

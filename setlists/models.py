@@ -98,13 +98,13 @@ class Set(models.Model):
 
 class SongsLists(models.Manager):
 
-    def all_songs(self):
+    def all_songs_play_count(self):
         #returns all songs ordered by play count
-        return self.all()
+        return self.annotate(play_count=Count('performance__set__show_id', distinct = True)).order_by('play_count').reverse()
 
-    def one_song(self, song):
+    def song(self, song_name):
         #returns one song object by name input
-        return self.get(name=song)
+        return self.get(name=song_name).performance_set.values_list(str('set__show__id')).distinct()
 
 
 class Song(models.Model):
@@ -113,16 +113,12 @@ class Song(models.Model):
     name = models.CharField(max_length=128, null=False)
     artist = models.CharField(max_length=64, null=False)
 
-    def times_played(self):
-        #total number times song was played
-        return self.name, self.performance_set.values_list('set__show_id').distinct().count()
-
     def all_shows_played(self):
         #return all sows where song was played
         pass
 
     #model manager sticky
-    filter = SongsLists()
+    data = SongsLists()
 
     #default models manager
     objects = models.Manager()
