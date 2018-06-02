@@ -22,7 +22,7 @@ def test(request):
     }
     return HttpResponse(template.render(context, request))
 
-def setlists_by_year(request, year=None):
+def shows(request, year=None):
 
     years_list = Show.filter.years_list()
 
@@ -49,7 +49,7 @@ def setlists_by_year(request, year=None):
     return HttpResponse(template.render(context, request))
 
 
-def song_play_count(request):
+def songs(request):
 
     songs = Song.data.all_songs_play_count()
 
@@ -60,7 +60,7 @@ def song_play_count(request):
     }
     return HttpResponse(template.render(context, request))
 
-def song_details(request, song_name):
+def song(request, song_name):
 
     #gets song object and finds all shows it was played at
     shows = Song.data.song(song_name)

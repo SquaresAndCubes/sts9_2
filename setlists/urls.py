@@ -8,13 +8,13 @@ urlpatterns = [
     #Home Landing Page
     path('', views.home, name='home'),
     #Setlists landing page most recent year
-    path('setlists/', views.setlists_by_year, name='setlist index'),
+    path('setlists/', views.shows, name='setlist index'),
     #Setlists by year
-    path('setlists/<int:year>/', views.setlists_by_year, name='setlists by year'),
+    path('setlists/<int:year>/', views.shows, name='setlists by year'),
     #Songs List Landing Page
-    path('songs/', views.song_play_count, name='songs play count'),
+    path('songs/', views.songs, name='songs play count'),
     #Specific Song Page
-    path('songs/<str:song_name>', views.song_details, name='song details'),
+    path('songs/<str:song_name>', views.song, name='song details'),
     #Stats Landing Page
     path('stats/', views.stats, name='stats'),
 

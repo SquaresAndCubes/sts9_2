@@ -104,7 +104,7 @@ class SongsLists(models.Manager):
 
     def song(self, song_name):
         #returns one song object by name input
-        return self.get(name=song_name).performance_set.values_list(str('set__show__id')).distinct()
+        return self.get(name=song_name).performance_set.distinct('set__show')
 
 
 class Song(models.Model):
@@ -112,10 +112,6 @@ class Song(models.Model):
     #unique properties
     name = models.CharField(max_length=128, null=False)
     artist = models.CharField(max_length=64, null=False)
-
-    def all_shows_played(self):
-        #return all sows where song was played
-        pass
 
     #model manager sticky
     data = SongsLists()
