@@ -7,8 +7,8 @@ class Venue(models.Model):
     #unique properties
     name = models.CharField(max_length=64, null=False)
     city = models.CharField(max_length=64, null=False)
-    state = models.CharField(max_length=2, null=True)
-    country = models.CharField(max_length=2, null=False)
+    state = models.CharField(max_length=4, null=True)
+    country = models.CharField(max_length=4, null=False)
 
     def __str__(self):
         return "{} - {} - {} - {}".format(self.name, self.city, self.state, self.country)
@@ -29,6 +29,10 @@ class Show(models.Model):
 
     #show was @ a venue relationship
     venue = models.ForeignKey(Venue, null=True, on_delete=models.SET_NULL)
+
+    #remove after data import
+
+    show_key = models.CharField(max_length=7, null=True)
 
     #unique properties
 
@@ -104,7 +108,7 @@ class SongsLists(models.Manager):
 
     def song(self, song_name):
         #returns one song object by name input
-        return self.get(name=song_name).performance_set.distinct('set__show')
+        return self.get(name=song_name).set_set.distinct('show__date')
 
 
 class Song(models.Model):
@@ -136,7 +140,7 @@ class Performance(models.Model):
 
     #unique properties
     track = models.IntegerField()
-    segue = models.CharField(max_length=1, null=True)
+    segue = models.CharField(max_length=4, null=True)
     notes = models.CharField(max_length=128, null=True)
     guest = models.CharField(max_length=64, null=True)
 
