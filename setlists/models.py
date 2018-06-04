@@ -2,13 +2,14 @@ from django.db import models
 from django.db.models import Count
 
 
+
 class Venue(models.Model):
 
     #unique properties
     name = models.CharField(max_length=64, null=False)
     city = models.CharField(max_length=64, null=False)
-    state = models.CharField(max_length=4, null=True)
-    country = models.CharField(max_length=4, null=False)
+    state = models.CharField(max_length=2, null=True)
+    country = models.CharField(max_length=2, null=False)
 
     def __str__(self):
         return "{} - {} - {} - {}".format(self.name, self.city, self.state, self.country)
@@ -23,6 +24,10 @@ class ShowFilters(models.Manager):
     def years_list(self):
         # get list of unique years
         return self.dates('date', 'year', order='DESC')
+
+    def show(self):
+
+        pass
 
 
 class Show(models.Model):
@@ -43,6 +48,10 @@ class Show(models.Model):
 
     #default model manager
     objects = models.Manager()
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('setlist', args=[str(self.date)])
 
     #function for getting sets ordered by set position
     def get_sets(self):
@@ -100,6 +109,7 @@ class Set(models.Model):
     def __str__(self):
         return '{} - {} \n{}\n'.format(self.show, self.name, self.performance_set.values_list('song__name'))
 
+
 class SongsLists(models.Manager):
 
     def all_songs_play_count(self):
@@ -123,12 +133,18 @@ class Song(models.Model):
     #default models manager
     objects = models.Manager()
 
+    def debut_date(self):
+
+        return self.set_set.values_list('')
+
     def __str__(self):
         return '{} - {}'.format(self.name, self.artist)
+
 
 class PerformanceStats(models.Manager):
 
     pass
+
 
 class Performance(models.Model):
 
@@ -140,7 +156,7 @@ class Performance(models.Model):
 
     #unique properties
     track = models.IntegerField()
-    segue = models.CharField(max_length=4, null=True)
+    segue = models.CharField(max_length=1, null=True)
     notes = models.CharField(max_length=128, null=True)
     guest = models.CharField(max_length=64, null=True)
 
