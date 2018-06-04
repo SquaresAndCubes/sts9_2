@@ -7,7 +7,7 @@
 
     <div class="container">
         <div class="header">
-            <h1>{{ song_name }}</h1>
+            <h1>{{ song_name }} | {{ show_count }}</h1>
         </div>
         <hr />
 
@@ -22,11 +22,11 @@
 
             {% for show in shows %}
             <tr>
-                <td>{{ show }}</td>
-                <td>{{ show }}</td>
-                <td>{{ show }}</td>
-                <td>{{ show }}</td>
-                <td>{{ show }}</td>
+                <td>{{ show.show.date }}</td>
+                <td>{{ show.show.venue.name }}</td>
+                <td>{{ show.show.venue.city }}</td>
+                <td>{{ show.show.venue.state }}</td>
+                <td>{{ show.show.venue.country }}</td>
             </tr>
             {% endfor %}
         </table>

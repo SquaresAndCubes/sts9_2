@@ -18,7 +18,7 @@ class ShowFilters(models.Manager):
 
     def by_year(self, year):
         # return only shows of the specified year
-        return self.filter(date__year=year).all().order_by('date').reverse()
+        return self.filter(date__year=year).order_by('date').reverse()
 
     def years_list(self):
         # get list of unique years
@@ -47,7 +47,7 @@ class Show(models.Model):
     #function for getting sets ordered by set position
     def get_sets(self):
 
-        return self.set_set.all().order_by('set_pos')
+        return self.set_set.order_by('set_pos')
 
     def __str__(self):
         return '{} - {}'.format(self.date, self.venue)
@@ -95,10 +95,10 @@ class Set(models.Model):
     #get performances
     def get_songs(self):
 
-        return self.performance_set.all().order_by('track')
+        return self.performance_set.order_by('track')
 
     def __str__(self):
-        return '{} - {} \n{}'.format(self.show, self.get_name_display(), self.performance_set.all().values_list('song__name'))
+        return '{} - {} \n{}\n'.format(self.show, self.name, self.performance_set.values_list('song__name'))
 
 class SongsLists(models.Manager):
 
@@ -108,7 +108,7 @@ class SongsLists(models.Manager):
 
     def song(self, song_name):
         #returns one song object by name input
-        return self.get(name=song_name).set_set.distinct('show__date')
+        return self.get(name=song_name).set_set.distinct('show__date').order_by('show__date').reverse()
 
 
 class Song(models.Model):

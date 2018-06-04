@@ -65,10 +65,13 @@ def song(request, song_name):
     #gets song object and finds all shows it was played at
     shows = Song.data.song(song_name)
 
+    show_count = shows.count()
+
     template = loader.get_template('songs/song.html')
 
     context = {
         'song_name': song_name,
         'shows': shows,
+        'show_count': show_count,
     }
     return HttpResponse(template.render(context, request))
