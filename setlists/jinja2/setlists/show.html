@@ -7,9 +7,22 @@
     <div class="container">
 
         <div class="header">
-            <h2>{{ show.date }}</h2>
+            <h2>{{ show.date.month }}/{{ show.date.day }}/{{ show.date.year }} | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}</h2>
         </div>
-        &nbsp;
+        <hr />
+        <div>
+            {% for set in show.get_sets() %}
+                <p>
+                <h4><b>{{ set.get_name_display() }}: </b></h4>
+                    {% for song in set.get_songs() %}
+                        <a href="/songs/{{ song.song.name }}" title="{{ song.song.name }}">{{ song.song.name }}</a>
+                        {% if not loop.last %}
+                            {{ song.segue or '|' }}
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            {% endfor %}
+        </div>
 
     </div>
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Count
+from django.utils.text import slugify
 
 
 
@@ -49,9 +50,9 @@ class Show(models.Model):
     #default model manager
     objects = models.Manager()
 
-    def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse('setlist', args=[str(self.date)])
+    ##########ADD SLUGFIELD#############
+
+    #slug = models.SlugField()
 
     #function for getting sets ordered by set position
     def get_sets(self):

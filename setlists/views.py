@@ -54,10 +54,10 @@ def shows(request, year=None):
 
 
 #page for one show view
-def show(request, show_string):
+def show(request, show_id):
 
-    #get show url string
-    show = Show.filter.show()
+    #get show by slug url
+    show = Show.objects.get(id=show_id)
 
     template = loader.get_template('setlists/show.html')
 

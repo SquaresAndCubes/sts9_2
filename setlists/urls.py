@@ -12,7 +12,7 @@ urlpatterns = [
     #Setlists by year
     path('setlists/<int:year>/', views.shows, name='setlists by year'),
     #single setlist
-    path('setlist/<str:show_string>', views.show, name='setlist'),
+    path('setlist/<int:show_id>', views.show, name='setlist'),
     #Songs List Landing Page
     path('songs/', views.songs, name='songs play count'),
     #Specific Song Page
