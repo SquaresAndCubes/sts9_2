@@ -15,14 +15,19 @@
             <tr>
                 <th>Song</th>
                 <th>Artist</th>
+                <th>Last Played</th>
+                <th>First Played</th>
                 <th>Times Played</th>
             </tr>
 
             {% for song in songs %}
             <tr>
-                <td><a href="/songs/{{ song.name }}" title="{{ song.name }}">{{ song.name }}</a></td>
+                <td><a href="/songs/{{ song.id }}" title="{{ song.name }}">{{ song.name }}</a></td>
                 <td>{{ song.artist }}</td>
+                <td>TBD</td>
+                <td>TBD</td>
                 <td>{{ song.play_count }}</td>
+
             </tr>
             {% endfor %}
         </table>

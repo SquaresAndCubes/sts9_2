@@ -57,7 +57,7 @@ def shows(request, year=None):
 def show(request, show_id):
 
     #get show by slug url
-    show = Show.objects.get(id=show_id)
+    show = Show.filter.show(show_id)
 
     template = loader.get_template('setlists/show.html')
 
@@ -82,10 +82,10 @@ def songs(request):
 
 
 #lists all shows where a song was played
-def song(request, song_name):
+def song(request, song_id):
 
     #gets song object and finds all shows it was played at
-    shows = Song.data.song(song_name)
+    song_name, shows = Song.data.song(song_id)
 
     #counts number of shows the song was played at
     show_count = shows.count()

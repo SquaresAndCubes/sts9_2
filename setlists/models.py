@@ -3,7 +3,6 @@ from django.db.models import Count
 from django.utils.text import slugify
 
 
-
 class Venue(models.Model):
 
     #unique properties
@@ -26,9 +25,9 @@ class ShowFilters(models.Manager):
         # get list of unique years
         return self.dates('date', 'year', order='DESC')
 
-    def show(self):
-
-        pass
+    def show(self, show_id):
+        # return one show
+        return self.get(id=show_id)
 
 
 class Show(models.Model):
@@ -37,11 +36,9 @@ class Show(models.Model):
     venue = models.ForeignKey(Venue, null=True, on_delete=models.SET_NULL)
 
     #remove after data import
-
     show_key = models.CharField(max_length=7, null=True)
 
     #unique properties
-
     date = models.DateField()
 
     #custom model manager sticky
@@ -117,9 +114,9 @@ class SongsLists(models.Manager):
         #returns all songs ordered by play count
         return self.annotate(play_count=Count('performance__set__show_id', distinct = True)).order_by('play_count').reverse()
 
-    def song(self, song_name):
-        #returns one song object by name input
-        return self.get(name=song_name).set_set.distinct('show__date').order_by('show__date').reverse()
+    def song(self, song_id):
+        #returns song name and all shows played ordered by date
+        return self.get(id=song_id).name, self.get(id=song_id).set_set.distinct('show__date').order_by('show__date').reverse()
 
 
 class Song(models.Model):
@@ -134,16 +131,11 @@ class Song(models.Model):
     #default models manager
     objects = models.Manager()
 
-    def debut_date(self):
-
-        return self.set_set.values_list('')
-
     def __str__(self):
         return '{} - {}'.format(self.name, self.artist)
 
 
 class PerformanceStats(models.Manager):
-
     pass
 
 
