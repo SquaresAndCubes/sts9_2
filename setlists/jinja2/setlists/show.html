@@ -7,7 +7,7 @@
     <div class="container">
 
         <div class="header">
-            <h2>{{ show.date.month }}/{{ show.date.day }}/{{ show.date.year }} | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}</h2>
+            <h2>{{ show.date.strftime("%Y.%m.%d") }} | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}</h2>
         </div>
         <hr />
         <div>

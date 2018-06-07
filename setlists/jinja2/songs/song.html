@@ -22,7 +22,7 @@
 
             {% for show in shows %}
             <tr>
-                <td><a href="/setlist/{{ show.show.id }}">{{ show.show.date }}</a></td>
+                <td><a href="/setlist/{{ show.show.id }}">{{ show.show.date.strftime("%Y.%m.%d") }}</a></td>
                 <td>{{ show.show.venue.name }}</td>
                 <td>{{ show.show.venue.city }}</td>
                 <td>{{ show.show.venue.state }}</td>
