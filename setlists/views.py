@@ -8,9 +8,15 @@ from .models import *
 def home():
     pass
 
-def stats():
-    pass
+def stats(request):
 
+    template = loader.get_template('stats/index.html')
+
+    context = {
+
+    }
+
+    return HttpResponse(template.render(context, request))
 
 def test(request):
 
