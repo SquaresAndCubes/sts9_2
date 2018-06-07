@@ -15,7 +15,7 @@
                 <p>
                 <h4><b>{{ set.get_name_display() }}: </b></h4>
                     {% for song in set.get_songs() %}
-                        <a href="/songs/{{ song.song.name }}" title="{{ song.song.name }}">{{ song.song.name }}</a>
+                        <a href="/songs/{{ song.song.id }}" title="{{ song.song.name }}">{{ song.song.name }}</a>
                         {% if not loop.last %}
                             {{ song.segue or '|' }}
                         {% endif %}
