@@ -22,7 +22,7 @@
 
         {% for show in shows %}
             <div class="panel panel-default">
-                <div class="panel-heading"><b>{{ show.date.month }}/{{ show.date.day }}/{{ show.date.year }} | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}
+                <div class="panel-heading"><b><a href="/setlist/{{ show.id }}" title="{{ show }}">{{ show.date.month }}/{{ show.date.day }}/{{ show.date.year }} </a> | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}
                 </b></div>
                 <div class="panel-body">
 
