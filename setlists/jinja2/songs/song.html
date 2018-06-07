@@ -25,7 +25,7 @@
                 <td><a href="/setlist/{{ show.show.id }}">{{ show.show.date.strftime("%Y.%m.%d") }}</a></td>
                 <td>{{ show.show.venue.name }}</td>
                 <td>{{ show.show.venue.city }}</td>
-                <td>{{ show.show.venue.state }}</td>
+                <td>{{ show.show.venue.state or 'N/A' }}</td>
                 <td>{{ show.show.venue.country }}</td>
             </tr>
             {% endfor %}
