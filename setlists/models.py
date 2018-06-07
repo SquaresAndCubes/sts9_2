@@ -1,6 +1,7 @@
 from django.db import models
-from django.db.models import Count
+from django.db.models import Count, Min, Max
 from django.utils.text import slugify
+
 
 
 class Venue(models.Model):
@@ -112,7 +113,11 @@ class SongsLists(models.Manager):
 
     def all_songs_play_count(self):
         #returns all songs ordered by play count
-        return self.annotate(play_count=Count('performance__set__show_id', distinct = True)).order_by('play_count').reverse()
+        return self.annotate(play_count=Count('performance__set__show_id', distinct = True),
+                             #gets the date song was first played
+                             first_played=Min('performance__set__show__date'),
+                             #gets most recent date played
+                             last_played=Max('performance__set__show__date')).order_by('play_count').reverse()
 
     def song(self, song_id):
         #returns song name and all shows played ordered by date
