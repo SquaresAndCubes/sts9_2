@@ -20,26 +20,26 @@ Current Tech
 
 The Stack:
 
-PostgreSQL
-Django 2.0.6
-Jinja2
-HTML
-Bootstrap/CSS
+PostgreSQL,
+Django 2.0.6,
+Jinja2,
+HTML,
+Bootstrap/CSS,
 
 Goals:
 
-  Build Comprehensive Statistic Analysis
-      Dates
-      Venues
-      Songs
-      City
-      State
-      Country
-      Song Busout Potentials
-      Average and Current Performance Gaps
+  Build Comprehensive Statistic Analysis:
+      Dates,
+      Venues,
+      Songs,
+      City,
+      State,
+      Countr,y
+      Song Butsout Potentials,
+      Average and Current Performance Gaps,
       Etc.
       
-  User Accounts
+  User Accounts:
     Ability to keep track of shows attended and the statistics related.
         Examples:
           Show Count
@@ -48,7 +48,7 @@ Goals:
     Comments/Forum Section
     Select Trusted users will have access to add/modify databases.
 
-Setlist Prediction
+Setlist Prediction:
   I was thinking to do this just for Fun.  If it ends up being too accurate I was thinking of not doing it haha:)
   because it would kinda be shitty to know what you are going to see.  But I figure it would be very interesting nonetheless.
   
