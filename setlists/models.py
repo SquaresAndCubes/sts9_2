@@ -9,8 +9,8 @@ class Venue(models.Model):
     #unique properties
     name = models.CharField(max_length=64, null=False)
     city = models.CharField(max_length=64, null=False)
-    state = models.CharField(max_length=2, null=True)
-    country = models.CharField(max_length=2, null=False)
+    state = models.CharField(max_length=4, null=True)
+    country = models.CharField(max_length=4, null=False)
 
     def __str__(self):
         return "{} - {} - {} - {}".format(self.name, self.city, self.state, self.country)
@@ -154,7 +154,7 @@ class Performance(models.Model):
 
     #unique properties
     track = models.IntegerField()
-    segue = models.CharField(max_length=1, null=True)
+    segue = models.CharField(max_length=2, null=True)
     notes = models.CharField(max_length=128, null=True)
     guest = models.CharField(max_length=64, null=True)
 
