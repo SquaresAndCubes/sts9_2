@@ -168,3 +168,9 @@ def import_performances():
             results["created"] += 1
     print("Finished - Created {} Performances".format(results["created"]))
 
+def import_all():
+    import_venues()
+    import_shows()
+    import_sets()
+    import_songs()
+    import_performances()
