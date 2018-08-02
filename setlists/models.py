@@ -117,7 +117,8 @@ class SongsLists(models.Manager):
                              #gets the date song was first played
                              first_played=Min('performance__set__show__date'),
                              #gets most recent date played
-                             last_played=Max('performance__set__show__date')).order_by('play_count').reverse()
+                             last_played=Max('performance__set__show__date'),
+                             ).order_by('play_count').reverse()
 
     def song(self, song_id):
         #returns song name and all shows played ordered by date
