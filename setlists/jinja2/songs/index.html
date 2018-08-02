@@ -24,8 +24,8 @@
             <tr>
                 <td><a href="/songs/{{ song.id }}" title="{{ song.name }}">{{ song.name }}</a></td>
                 <td>{{ song.artist }}</td>
-                <td>{{ song.last_played }}</td>
-                <td>{{ song.first_played }}</td>
+                <td>{{ song.last_played.strftime("%Y.%m.%d") }}</td>
+                <td>{{ song.first_played.strftime("%Y.%m.%d") }}</td>
                 <td>{{ song.play_count }}</td>
 
             </tr>
