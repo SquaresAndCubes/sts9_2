@@ -34,7 +34,7 @@ class ShowFilters(models.Manager):
     def song_appearances_show_gap(self, song_id):
 
         #create list for filtered queryset
-        shows_list = []
+        show_list = []
 
         #sort shows by date, desc, loop through, annotate rank
         for show in self.annotate(rank=Window(order_by=TruncDate('date').desc(), expression=Rank())):
@@ -42,12 +42,10 @@ class ShowFilters(models.Manager):
             #filter queryset from above looking for song_id occurances in all sets of show
             if song_id in show.set_set.values_list('performance__song_id', flat=True):
                 #append filtered shows to list
-                shows_list.append(show)
+                show_list.append(show)
 
-        for line in shows_list:
-            print(line.rank, line)
 
-        return Song.objects.get(id=song_id).name, shows_list
+        return Song.objects.get(id=song_id).name, show_list
 
 
 class Show(models.Model):
