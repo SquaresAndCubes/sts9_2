@@ -1,6 +1,9 @@
 from django.db import models
-from django.db.models import Count, Min, Max
+from django.db.models import Count, Min, Max, Window, DateTimeField
 from django.utils.text import slugify
+from django.db.models import OuterRef, Subquery, DateField
+from django.db.models.functions.window import Rank, DenseRank, RowNumber, NthValue
+from django.db.models.functions import TruncDate
 
 
 
@@ -29,6 +32,22 @@ class ShowFilters(models.Manager):
     def show(self, show_id):
         # return one show
         return self.get(id=show_id)
+
+    def song_occurances(self, song_id):
+
+        #create
+        shows_list = []
+
+        for item in self.annotate(rank=Window(order_by=TruncDate('date').desc(), expression=Rank())):
+
+            if song_id in item.set_set.values_list('performance__song_id', flat=True):
+
+                shows_list.append(item)
+
+        for show in shows_list:
+
+            print(show.rank, show.date)
+
 
 
 class Show(models.Model):
@@ -167,3 +186,6 @@ class Performance(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.set.show.date, self.song.name)
+
+
+
