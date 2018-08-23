@@ -1,8 +1,7 @@
 from django.db import models
-from django.db.models import Count, Min, Max, Window, DateTimeField
+from django.db.models import Count, Min, Max, Window
 from django.utils.text import slugify
-from django.db.models import OuterRef, Subquery, DateField
-from django.db.models.functions.window import Rank, DenseRank, RowNumber, NthValue
+from django.db.models.functions.window import Rank
 from django.db.models.functions import TruncDate
 
 
@@ -33,16 +32,17 @@ class ShowFilters(models.Manager):
         # return one show
         return self.get(id=show_id)
 
-    def song_occurances(self, song_id):
+    def song_appearances_show_gap(self, song_id):
 
         #create list for filtered queryset
         shows_list = []
 
-        #for loop through all shows and append shows with matching song_ids to shows_list
+        #sort shows by date, desc, loop through, annotate rank
         for show in self.annotate(rank=Window(order_by=TruncDate('date').desc(), expression=Rank())):
 
+            #filter queryset from above looking for song_id occurances in all sets of show
             if song_id in show.set_set.values_list('performance__song_id', flat=True):
-
+                #append filtered shows to list
                 shows_list.append(show)
 
         return shows_list
