@@ -18,15 +18,17 @@
                 <th>City</th>
                 <th>State</th>
                 <th>Country</th>
+                <th>Show Gap</th>
             </tr>
 
-            {% for show in shows %}
+            {% for show in show_list %}
             <tr>
-                <td><a href="/setlist/{{ show.show.id }}">{{ show.show.date.strftime("%Y.%m.%d") }}</a></td>
-                <td>{{ show.show.venue.name }}</td>
-                <td>{{ show.show.venue.city }}</td>
-                <td>{{ show.show.venue.state or 'N/A' }}</td>
-                <td>{{ show.show.venue.country }}</td>
+                <td><a href="/setlist/{{ show.id }}">{{ show.date.strftime("%Y.%m.%d") }}</a></td>
+                <td>{{ show.venue.name }}</td>
+                <td>{{ show.venue.city }}</td>
+                <td>{{ show.venue.state or 'N/A' }}</td>
+                <td>{{ show.venue.country }}</td>
+                <td>{{ show.rank }}</td>
             </tr>
             {% endfor %}
         </table>
