@@ -1,6 +1,5 @@
 from django.db import models
 from django.db.models import Count, Min, Max, Window
-from django.utils.text import slugify
 from django.db.models.functions.window import Rank
 from django.db.models.functions import TruncDate
 
@@ -45,8 +44,10 @@ class ShowFilters(models.Manager):
                 #append filtered shows to list
                 shows_list.append(show)
 
-        return shows_list
+        for line in shows_list:
+            print(line.rank, line)
 
+        return Song.objects.get(id=song_id).name, shows_list
 
 
 class Show(models.Model):
@@ -65,10 +66,6 @@ class Show(models.Model):
 
     #default model manager
     objects = models.Manager()
-
-    ##########ADD SLUGFIELD#############
-
-    #slug = models.SlugField()
 
     #function for getting sets ordered by set position
     def get_sets(self):

@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
 from .models import *
 
 # Create your views here.
@@ -90,17 +91,10 @@ def songs(request):
 #lists all shows where a song was played
 def song(request, song_id):
 
-    #gets song object and finds all shows it was played at
-    song_name, shows = Song.data.song(song_id)
+    song_name, show_list = Show.filter.song_appearances_show_gap(song_id)
 
-    #counts number of shows the song was played at
-    show_count = shows.count()
+    context = {'song_name': song_name,
+               'show_list': show_list,
+               'show_count': len(show_list)}
 
-    template = loader.get_template('songs/song.html')
-
-    context = {
-        'song_name': song_name,
-        'shows': shows,
-        'show_count': show_count,
-    }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'songs/song.html', context)
