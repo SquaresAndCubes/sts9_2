@@ -35,18 +35,17 @@ class ShowFilters(models.Manager):
 
     def song_occurances(self, song_id):
 
-        #create
+        #create list for filtered queryset
         shows_list = []
 
-        for item in self.annotate(rank=Window(order_by=TruncDate('date').desc(), expression=Rank())):
+        #for loop through all shows and append shows with matching song_ids to shows_list
+        for show in self.annotate(rank=Window(order_by=TruncDate('date').desc(), expression=Rank())):
 
-            if song_id in item.set_set.values_list('performance__song_id', flat=True):
+            if song_id in show.set_set.values_list('performance__song_id', flat=True):
 
-                shows_list.append(item)
+                shows_list.append(show)
 
-        for show in shows_list:
-
-            print(show.rank, show.date)
+        return shows_list
 
 
 
