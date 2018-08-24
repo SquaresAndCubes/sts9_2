@@ -31,7 +31,7 @@ class ShowFilters(models.Manager):
         # return one show
         return self.get(id=show_id)
 
-    def song_appearances_show_gap(self, song_id):
+    def song_appearances(self, song_id):
 
         #create list for filtered queryset
         show_list = []
