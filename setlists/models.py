@@ -37,7 +37,7 @@ class ShowFilters(models.Manager):
         show_list = []
         prev_rank = 0
         #sort shows by date, desc, loop through, annotate rank
-        for show in self.annotate(rank=Window(order_by=TruncDate('date').desc(), expression=Rank())):
+        for show in self.annotate(rank=Window(order_by=TruncDate('date'), expression=Rank())):
 
             #filter queryset from above looking for song_id occurances in all sets of show
             if song_id in show.set_set.values_list('performance__song_id', flat=True):
