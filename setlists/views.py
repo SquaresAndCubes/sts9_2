@@ -80,10 +80,13 @@ def songs(request):
     #gets an annotated set of song | playcount
     songs = Song.data.all_songs_play_count()
 
+    song_count = songs.count()
+
     template = loader.get_template('songs/index.html')
 
     context = {
         'songs': songs,
+        'song_count': song_count,
     }
     return HttpResponse(template.render(context, request))
 
