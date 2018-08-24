@@ -22,7 +22,7 @@
             </tr>
             {% for show in show_list %}
             <tr>
-                <td><a href="/setlist/{{ show['show_id'] }}">{{ show['date'].strftime("%Y.%m.%d") }}</a></td>
+                <td><a href="/setlist/{{ show['show_id'] }}">{{ show['date'] }}</a></td>
                 <td>{{ show['venue'] }}</td>
                 <td>{{ show['city'] }}</td>
                 <td>{{ show['state'] or 'N/A' }}</td>
