@@ -20,7 +20,7 @@
                 <th>Country</th>
                 <th>Show Gap</th>
             </tr>
-            {% for show in show_list %}
+            {% for show in show_list|sort(attribute='date', reverse=True) %}
             <tr>
                 <td><a href="/setlist/{{ show['show_id'] }}">{{ show['date'] }}</a></td>
                 <td>{{ show['venue'] }}</td>
