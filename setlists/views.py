@@ -94,7 +94,7 @@ def songs(request):
 #lists all shows where a song was played
 def song(request, song_id):
 
-    song_name, show_list = Show.filter.song_appearances_show_gap(song_id)
+    song_name, show_list = Show.filter.song_appearances(song_id)
 
     context = {'song_name': song_name,
                'show_list': show_list,
