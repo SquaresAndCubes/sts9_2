@@ -94,10 +94,13 @@ def songs(request):
 #lists all shows where a song was played
 def song(request, song_id):
 
-    song_name, show_list = Show.filter.song_appearances(song_id)
+    song_name, avg_gap, show_list = Show.filter.song_appearances(song_id)
 
-    context = {'song_name': song_name,
-               'show_list': show_list,
-               'show_count': len(show_list)}
+    context = {
+        'song_name': song_name,
+        'show_list': show_list,
+        'show_count': len(show_list),
+        'avg_gap': avg_gap,
+        }
 
     return render(request, 'songs/song.html', context)
