@@ -20,7 +20,7 @@
                 <th>Country</th>
                 <th>Show Gap</th>
             </tr>
-
+            {% set ns = namespace(prev = 0) %}
             {% for show in show_list %}
             <tr>
                 <td><a href="/setlist/{{ show.id }}">{{ show.date.strftime("%Y.%m.%d") }}</a></td>
@@ -28,7 +28,8 @@
                 <td>{{ show.venue.city }}</td>
                 <td>{{ show.venue.state or 'N/A' }}</td>
                 <td>{{ show.venue.country }}</td>
-                <td>{{ show.rank }}</td>
+                <td>{{ show.rank - ns.prev }}</td>
+                {% set ns.prev = show.rank -%}
             </tr>
             {% endfor %}
         </table>
