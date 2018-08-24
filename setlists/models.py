@@ -45,7 +45,7 @@ class ShowFilters(models.Manager):
                 #build show dictionary includes calculation for show gap
                 show_gap = {
                     'show_id': show.id,
-                    'date': show.date,
+                    'date': show.date.strftime("%Y.%m.%d"),
                     'venue': show.venue.name,
                     'city': show.venue.city,
                     'state': show.venue.state,
