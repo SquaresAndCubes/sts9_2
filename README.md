@@ -14,7 +14,7 @@ I came up with the Idea in 2016. I began learning Python and web scraping tools.
 to scrape data from various sources of data for the project.  If you are interested in the details of this contact me.
 At this point the data is all imported into the database so it is not really relevant anymore.
 
-Most of the DATA is from Setlists.fm,  this has been a great resource.
+Most of the DATA is from Setlists.fm in which I exported all of the data to XML and then built a custom scraping tool in python to dump all the data to PostgreSQL,  this has been a great resource.
 
 Current Tech
 
