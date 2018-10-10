@@ -21,25 +21,63 @@
         <hr>
 
         {% for show in shows %}
+            {# set increment variable for notes and guests #}
+            {% set note_num = [1] %}
+            {# set empty notes list for footnotes #}
+            {% set notes_list = [] %}
             <div class="panel panel-default">
-                <div class="panel-heading"><b><a href="/setlist/{{ show.id }}" title="{{ show }}">{{ show.date.strftime("%Y.%m.%d") }} </a> | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}
-                </b></div>
+                <div class="panel-heading">
+                    <b><a href="/setlist/{{ show.id }}" title="{{ show }}">
+                        {{ show.date.strftime("%Y.%m.%d") }} </a>
+                        | {{ show.venue.name }}, {{ show.venue.city }}, {{ show.venue.state }}, {{ show.venue.country }}
+                    </b>
+                </div>
                 <div class="panel-body">
 
-
+                    {# set iterator #}
                     {% for set in show.get_sets() %}
                         <p>
+                            {# print set name #}
                             <b>{{ set.get_name_display() }}: </b>
-                    {% for song in set.get_songs() %}
-                        <a href="/songs/{{ song.song.id }}" title="{{ song.song.name }}">{{ song.song.name }}</a>
-                        {% if not loop.last %}
-                        {{ song.segue or '|' }}
-                        {% endif %}
-                        {% endfor %}
+                            {# song iterator #}
+                            {% for song in set.get_songs() %}
+                                {# set variable for song note #}
+                                {% set note_string = None %}
+                                {# prints song name and links #}
+                                <a href="/songs/{{ song.song.id }}" title="{{ song.song.name }}">
+                                    {{ song.song.name }}</a>
+                                {# check to see if song has any notes, if so print superscript label #}
+                                {# check if it has just a note or guest #}
+                                {% if song.notes or song.guest %}
+                                    {# if both then create custom string else just print one or the other #}
+                                    {% if song.notes and song.guest %}
+                                        {% set note_string = song.notes + " | w/ " + song.guest %}
+                                    {% else %}
+                                        {% set note_string = song.notes or "w/ " + song.guest %}
+                                    {% endif %}
+                                    {# superscript for note tag above song name #}
+                                    <sup>{{ note_num }}</sup>
+                                    {# build string for note list #}
+                                    {% set note_guest = "[" + note_num[0]|string + "]" + " :: " + note_string %}
+                                    {# add notes to the notes_list #}
+                                    {% if notes_list.append(note_guest) %}{% endif %}
+                                    {# script to increment the note number #}
+                                    {% if note_num.append(note_num.pop() + 1) %}{% endif %}
+                                {% endif %}
+                                {# place pipe or segue symbol between songs except for last #}
+                                {% if not loop.last %}
+                                    {{ song.segue or '|' }}
+                                {% endif %}
+                            {% endfor %}
                         </p>
                     {% endfor %}
+                    {# print notes of show  #}
 
-
+                </div>
+                <div class="panel-footer" style="font-size:11.5px">
+                    {% for note in notes_list %}
+                        {{ note }}
+                    {% endfor %}
                 </div>
             </div>
         {% endfor %}
