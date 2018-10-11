@@ -16,6 +16,9 @@ def import_venues():
         next(reader, None)
         for row in reader:
 
+            for i in range(len(row)):
+                if row[i] == 'NULL':
+                    row[i] = None
             # get_or_create returns 2 things, the first thing is the object we wanted, and the second thing
             # is a true / false value that lets us know if the object was newly created or if was already there
             new_obj, created = models.Venue.objects.get_or_create(name=row[2], city=row[3], state=row[4],
@@ -41,6 +44,10 @@ def import_shows():
         # skip header
         next(reader, None)
         for row in reader:
+
+            for i in range(len(row)):
+                if row[i] == 'NULL':
+                    row[i] = None
             # by asking for a venue by the name, city, state and country, we ensure that we are getting the correct venue
             venue = models.Venue.objects.get(name=row[2], city=row[3], state=row[4], country=row[5])
 
@@ -160,6 +167,10 @@ def import_performances():
                 new_name = Set.PA
 
             set = models.Set.objects.get(show__show_key=row[1], name=new_name)
+
+            for i in range(len(row)):
+                if row[i] == 'NULL':
+                    row[i] = None
 
             new_perf = models.Performance(song=song, set=set, track=row[4], segue=row[5], notes=row[6], guest=row[8])
 
