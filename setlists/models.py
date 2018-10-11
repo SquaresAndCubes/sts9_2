@@ -189,7 +189,7 @@ class Performance(models.Model):
 
     #unique properties
     track = models.IntegerField()
-    segue = models.CharField(max_length=2, null=True)
+    segue = models.CharField(max_length=1, null=True)
     notes = models.CharField(max_length=128, null=True)
     guest = models.CharField(max_length=64, null=True)
 

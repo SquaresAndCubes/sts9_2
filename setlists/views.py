@@ -46,6 +46,8 @@ def shows(request, year=None):
     #
     shows = Show.filter.by_year(year)
 
+    #set footnote variable
+
     #counts num of shows in the year
     show_count = shows.count()
 
