@@ -1,5 +1,8 @@
 STS9 Setlist Project
 
+*****This Project is Now Depreciated*****
+A new and improved project can be found @ https://github.com/SquaresAndCubes/sts9_3
+
 Hello,
 
 Welcome to the STS9 setlist web project.  The purpose of this project is to build a central setlists database
